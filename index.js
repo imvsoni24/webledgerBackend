@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const app  = express();
 const {connection} = require("./db") 
+require("dotenv").config();
 
 const {recipeRouter} = require("./routes/recipeRoute")
 const {authRouter} = require("./routes/authRoute")
@@ -11,11 +12,11 @@ app.use(express.json())
 app.use("/recipe",recipeRouter)
 app.use("/auth",authRouter)
 
-app.get("/home",(req,res)=>{
-    console.log("Home Route")
+app.get("/",(req,res)=>{
+    console.log("Welcome to Recipe Application")
 })
 
-app.listen(4500,async()=>{
+app.listen(process.env.PORT,async()=>{
     try{
         await connection
         console.log("server is running on port 4500")
