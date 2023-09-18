@@ -13,10 +13,9 @@ app.use("/recipe",recipeRouter)
 app.use("/auth",authRouter)
 
 app.get("/",(req,res)=>{
-    console.log("Welcome to Recipe Application")
+    res.send("Welcome to Recipe Application")
 })
-const port = 4500
-app.listen(port,async()=>{
+app.listen(process.env.port,async()=>{
     try{
         await connection
         console.log("server is running on port 4500")
